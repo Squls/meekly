@@ -29,7 +29,9 @@ function getMusic() {
                 let img = result['topartists']['artist'][i]['image'][4]['#text'];
                 request(img).pipe(fs.createWriteStream('meekly' + i + '.jpg'));
             }
-            artists += name + ' ' + c + ', ';
+            if (i < 2 ) {
+            artists += name + ' (' + c + '), ';
+            }
         }
 
         artists += '. #music';
