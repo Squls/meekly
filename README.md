@@ -11,4 +11,4 @@ Run ```package.json``` to install dependencies by running:
 
 Update the last.fm request uri with your usernanme and API key.
 
-```http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=klj3&api_key=3ca92f3285713bfa6409ac3abe72191b&format=json&period=7day&limit=3```
+```http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=USERNAME&api_key=API_KEY&format=json&period=7day&limit=3```
