@@ -6,6 +6,7 @@
     "dependencies": {
         "base-64": "^0.1.0",
         "base64-img": "^1.0.3",
+        "node-schedule": "^1.2.5",
         "request": "^2.81.0",
         "twitter": "^1.7.1"
     },

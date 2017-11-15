@@ -1,5 +1,6 @@
 const Twitter = require('twitter');
 const request = require('request');
+const schedule = require('node-schedule')
 const fs = require('fs');
 const options = {
     url: 'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=USERNAME&api_key=YOURAPIKEY&format=json&period=7day&limit=3',
@@ -63,5 +64,6 @@ function tweet() {
     })
 }
 
-getMusic();
-setInterval(getMusic, 604800000)
+schedule.scheduleJob('* * 10 * * 6', function () {
+    getMusic()
+})
