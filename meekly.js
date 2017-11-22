@@ -64,6 +64,6 @@ function tweet() {
     })
 }
 
-schedule.scheduleJob('* * 10 * * 6', function () {
+schedule.scheduleJob('0 10 * * 6', function () {
     getMusic()
 })
