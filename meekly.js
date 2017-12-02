@@ -11,7 +11,7 @@ let CONSUMER_SECRET = process.env.TwitterConsumerSecret
 let ACCESS_TOKEN_KEY = process.env.TwitterAccessKey
 let ACCESS_TOKEN_SECRET = process.env.TwitterAccessSecret
 let USERNAME = process.env.LastfmUser
-let LASTFMAPIKEY = process.envLastfmKey
+let LASTFMAPIKEY = process.env.LastfmKey
 
 const options = {
     url: 'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + USERNAME + '&api_key=' + LASTFMAPIKEY + '&format=json&period=7day&limit=3',
@@ -22,10 +22,10 @@ const options = {
 
 
 const client = new Twitter({
-    consumer_key: 'CONSUMER_KEY',
-    consumer_secret: 'CONSUMER_SECRET',
-    access_token_key: 'ACCESS_TOKEN_KEY',
-    access_token_secret: 'ACCESS_TOKEN_SECRET'
+    consumer_key: CONSUMER_KEY,
+    consumer_secret: CONSUMER_SECRET,
+    access_token_key: ACCESS_TOKEN_KEY,
+    access_token_secret: ACCESS_TOKEN_SECRET
 });
 
 var artists = 'My top artists this week: ';
@@ -43,11 +43,12 @@ function getMusic() {
                 request(img).pipe(fs.createWriteStream('meekly' + i + '.jpg'));
             }
             if (i < 2) {
-                artists += ', '
+                artists += name + ', '
             } else {
-                artists += '. #music';
+                artists += 'and ' + name + '. #music';
             }
         }
+        console.log(artists)
         setTimeout(tweet, 5000);
 
     });
@@ -76,6 +77,7 @@ function tweet() {
     })
 }
 
+getMusic()
 schedule.scheduleJob('0 10 * * 6', function () {
     getMusic()
 })
