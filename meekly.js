@@ -28,11 +28,12 @@ const client = new Twitter({
     access_token_secret: ACCESS_TOKEN_SECRET
 });
 
-var artists = 'My top artists this week: ';
+let artists = null;
 
 function getMusic() {
     request(options, function (error, response, body) {
 
+        artists = 'My top artists this week: ';
         let result = JSON.parse(body)
 
         for (i = 0; i < result['topartists']['artist'].length; i++) {
