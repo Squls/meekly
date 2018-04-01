@@ -46,10 +46,9 @@ function getMusic() {
             if (i < 2) {
                 artists += name + ', '
             } else {
-                artists += 'and ' + name + '. #music';
+                artists += 'and ' + name + '. #music #nowplaying';
             }
         }
-        console.log(artists)
         setTimeout(tweet, 5000);
 
     });
@@ -78,7 +77,6 @@ function tweet() {
     })
 }
 
-getMusic()
-schedule.scheduleJob('0 10 * * 6', function () {
+schedule.scheduleJob('0 3 9 * * 7', function () {
     getMusic()
 })
