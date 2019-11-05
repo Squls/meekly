@@ -39,10 +39,7 @@ function getMusic() {
         for (i = 0; i < result['topartists']['artist'].length; i++) {
             let name = result['topartists']['artist'][i]['name'];
             let c = result['topartists']['artist'][i]['playcount'];
-            if (i == 0) {
-                let img = result['topartists']['artist'][i]['image'][4]['#text'];
-                request(img).pipe(fs.createWriteStream('meekly' + i + '.jpg'));
-            }
+
             if (i < 2) {
                 artists += name + ', '
             } else {
@@ -56,25 +53,14 @@ function getMusic() {
 
 }
 
-function tweet() {
+function tweet() {    
 
-    var imgfile = fs.readFileSync('meekly0.jpg');
+    var body = {
+    	status: artists
+    }
 
-    client.post('media/upload', {
-        media: [imgfile]
-    }, function (error, media, response) {
+    client.post('statuses/update', body, function (error, tweet, response) {});
 
-        if (!error) {
-
-            var status = {
-                status: artists,
-                media_ids: media.media_id_string
-            }
-
-            client.post('statuses/update', status, function (error, tweet, response) {});
-
-        }
-    })
 }
 
 schedule.scheduleJob('0 3 9 * * 7', function () {
